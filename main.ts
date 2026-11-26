@@ -17,6 +17,9 @@ if (lines.length < 1 || lines.length > 2) {
 if (SCENE.trim().length === 0) {
   throw new Error("entry must not be only whitespace");
 }
+if (SCENE !== SCENE.trim() || lines.some((l) => l.trim().length === 0)) {
+  throw new Error("entry must not have leading/trailing whitespace or blank lines");
+}
 
 mkdirSync("/output", { recursive: true });
 writeFileSync("/output/entry.txt", SCENE, "utf8");
